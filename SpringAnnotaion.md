@@ -35,7 +35,7 @@ Web作为整个专栏的第三大部分，内容包括：
 
 #### 一、Spring IOC和DI
 
-![image-20220517132412444](Spring注解.assets/image-20220517132412444.png)
+![image-20220517132412444](SpringAnnotaion.assets/image-20220517132412444.png)
 
 ##### 1. 通过XML配置文件注入JavaBean
 
@@ -137,7 +137,7 @@ public class MainTest {
 
 运行以上main方法，输出的结果信息如下图所示。
 
-![image-20220517133845257](Spring注解.assets/image-20220517133845257.png)
+![image-20220517133845257](SpringAnnotaion.assets/image-20220517133845257.png)
 
 #### 二、使用@ComponentScan自动扫描组件并指定扫描规则
 
@@ -502,7 +502,7 @@ public @interface ComponentScan {
 
 这里，我们着重来看ComponentScan类中的如下两个方法。
 
-![image-20220517135101791](Spring注解.assets/image-20220517135101791.png)
+![image-20220517135101791](SpringAnnotaion.assets/image-20220517135101791.png)
 
 includeFilters()方法指定Spring扫描的时候按照什么规则只需要包含哪些组件，
 
@@ -583,7 +583,7 @@ public @interface ComponentScan {
 
 不知道小伙伴们有没有注意到ComponentScan注解类上有一个如下所示的注解。
 
-![image-20220517135926898](Spring注解.assets/image-20220517135926898.png)
+![image-20220517135926898](SpringAnnotaion.assets/image-20220517135926898.png)
 
 先来看看@ComponentScans注解是个啥，如下图所示。
 
@@ -873,7 +873,7 @@ public void test01() {
 
 此时，输出的结果信息如下图所示。
 
-![image-20220517141134050](Spring注解.assets/image-20220517141134050.png)
+![image-20220517141134050](SpringAnnotaion.assets/image-20220517141134050.png)
 
 可以看到，已经输出了当前正在扫描的类的名称，同时，除了Spring内置的bean的名称之外，只输出了mainConfig和person，而没有输出使用@Repository、@Service、@Controller这些注解标注的组件的名称。这是因为当前MainConfig类上标注的@ComponentScan注解是使用的自定义规则，而在自定义规则的实现类（即MyTypeFilter类）中，直接返回了false，那么就是一个都不匹配了，自然所有的bean就都没被包含进去容器中了。
 
@@ -924,7 +924,7 @@ public class MyTypeFilter implements TypeFilter {
 
 最后，我们再次运行IOCTest类中的test01()方法进行测试，输出的结果信息如下图所示。
 
-![image-20220517200836436](Spring注解.assets/image-20220517200836436.png)
+![image-20220517200836436](SpringAnnotaion.assets/image-20220517200836436.png)
 
 此时，结果信息中输出了使用@Service和@Controller这俩注解标注的组件的名称，分别是bookController和bookService。
 
@@ -1023,7 +1023,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 
 综上。在@Scope注解中的取值如下所示。
 
-![](Spring注解.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3llcmVueXVhbl9wa3U=,size_16,color_FFFFFF,t_70#pic_center.png)
+![](SpringAnnotaion.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3llcmVueXVhbl9wa3U=,size_16,color_FFFFFF,t_70#pic_center.png)
 
 其中，request和session作用域是需要Web环境来支持的，这两个值基本上使用不到。当我们使用Web容器来运行Spring应用时，如果需要将组件的实例对象的作用域设置为request和session，那么我们通常会使用
 
@@ -1100,7 +1100,7 @@ public class MainConfig2 {
 
  此时，我们再次运行IOCTest类中的test02()方法，你觉得从Spring容器中获取到的person对象和person2对象还是同一个对象吗？
 
-![image-20220518105756758](Spring注解.assets/image-20220518105756758.png)
+![image-20220518105756758](SpringAnnotaion.assets/image-20220518105756758.png)
 
 很显然不是，从以上输出结果中也可以看出，此时，输出的person对象和person2对象已经不是同一个对象了。
 
@@ -1231,7 +1231,7 @@ public interface Condition {
 
 我们可以在哪些场合使用@Conditional注解呢？@Conditional注解的使用场景如下图所示。
 
-![image-20220518111439532](Spring注解.assets/image-20220518111439532.png)
+![image-20220518111439532](SpringAnnotaion.assets/image-20220518111439532.png)
 
 ##### 2. 带条件注册bean
 
@@ -1325,7 +1325,7 @@ public class LinuxCondition implements Condition {
 
 context的getRegistry()方法获取到的bean定义的注册对象，即BeanDefinitionRegistry对象了。它到底是个啥呢？我们可以点进去看一下它的源码，如下所示，可以看到它是一个接口。
 
-![image-20220518112326087](Spring注解.assets/image-20220518112326087.png)
+![image-20220518112326087](SpringAnnotaion.assets/image-20220518112326087.png)
 
 Spring容器中所有的bean都可以通过BeanDefinitionRegistry对象来进行注册，因此我们可以通过它来查看Spring容器中到底注册了哪些bean。而且仔细查看一下BeanDefinitionRegistry接口中声明的各个方法，你就知道我们还可以通过BeanDefinitionRegistry对象向Spring容器中注册一个bean、移除一个bean、查询某一个bean的定义信息或者判断Spring容器中是否包含有某一个bean的定义。
 
@@ -1531,7 +1531,7 @@ public void testImport() {
 
 运行以上testImport()方法之后，输出的结果信息如下所示。
 
-![image-20220518131008973](Spring注解.assets/image-20220518131008973.png)
+![image-20220518131008973](SpringAnnotaion.assets/image-20220518131008973.png)
 
 可以看到Spring容器中并没有Color类对应的bean实例。
 
@@ -1581,7 +1581,7 @@ public class MainConfig2 {
 
 然后，我们运行IOCTest类中的testImport()方法，会发现输出的结果信息如下所示。
 
-![image-20220518131149124](Spring注解.assets/image-20220518131149124.png)
+![image-20220518131149124](SpringAnnotaion.assets/image-20220518131149124.png)
 
 可以看到，输出结果中打印了com.meimeixia.bean.Color，说明使用@Import注解快速地导入组件时，容器中就会自动注册这个组件，并且id默认是组件的全类名。
 
@@ -1690,7 +1690,7 @@ public class MainConfig01 {
 
 接着，我们就要运行IOCTest类中的testImport()方法了，在运行该方法之前，咱们先在MyImportSelector类的selectImports()方法处打一个断点，debug调试一下，如下图所示。
 
-![image-20220518140047403](Spring注解.assets/image-20220518140047403.png)
+![image-20220518140047403](SpringAnnotaion.assets/image-20220518140047403.png)
 
 ```java
 public class MyImportSelector implements ImportSelector {
@@ -1712,7 +1712,7 @@ public class MyImportSelector implements ImportSelector {
 }
 ```
 
-![image-20220518140922445](Spring注解.assets/image-20220518140922445.png)
+![image-20220518140922445](SpringAnnotaion.assets/image-20220518140922445.png)
 
 #### 九、在@Import注解中使用ImportBeanDefinitioRegistrar向容器注册bean
 
@@ -1769,7 +1769,7 @@ public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
 
 最后，我们运行IOCTest类中的testImport()方法来进行测试，输出结果信息如下所示。
 
-![image-20220520160609547](Spring注解.assets/image-20220520160609547.png)
+![image-20220520160609547](SpringAnnotaion.assets/image-20220520160609547.png)
 
 #### 十、如何使用FactBean向Spring容器中注册Bean？
 
@@ -1857,13 +1857,13 @@ public class ColorFactroyBean implements FactoryBean<Color> {
 
 ```
 
-![image-20220520162349208](Spring注解.assets/image-20220520162349208.png)
+![image-20220520162349208](SpringAnnotaion.assets/image-20220520162349208.png)
 
 这里需要小伙伴们注意的是：我在这里使用@Bean注解向Spring容器中注册的是ColorFactoryBean对象。
 
 那现在我们就来看看Spring容器中到底都有哪些bean。我们所要做的事情就是，运行IOCTest类中的testImport()方法，此时，输出的结果信息如下所示。
 
-![image-20220520162503339](Spring注解.assets/image-20220520162503339.png)
+![image-20220520162503339](SpringAnnotaion.assets/image-20220520162503339.png)
 
 可以看到，结果信息中输出了一个colorFactoryBean，我们看下这个colorFactoryBean到底是个什么鬼！此时，我们对IOCTest类中的testImport()方法稍加改动，添加获取colorFactoryBean的代码，并输出colorFactoryBean实例的类型，如下所示。
 
@@ -1882,7 +1882,7 @@ public void testImport02() {
 }
 ```
 
-![image-20220520162642735](Spring注解.assets/image-20220520162642735.png)
+![image-20220520162642735](SpringAnnotaion.assets/image-20220520162642735.png)
 
 可以看到，虽然我在代码中使用@Bean注解注入的是ColorFactoryBean对象，但是实际上从Spring容器中获取到的bean对象却是调用ColorFactoryBean类中的getObject()方法获取到的Color对象。
 
@@ -1904,7 +1904,7 @@ public void testImport02() {
     }
 ```
 
-![image-20220520162955719](Spring注解.assets/image-20220520162955719.png)
+![image-20220520162955719](SpringAnnotaion.assets/image-20220520162955719.png)
 
 可以看到，在ColorFactoryBean类中的isSingleton()方法里面返回true时，每次获取到的Color对象都是同一个对象，说明Color对象是单实例bean。
 
@@ -1931,7 +1931,7 @@ public void testImport02() {
     }
 ```
 
-![image-20220520163425444](Spring注解.assets/image-20220520163425444.png)
+![image-20220520163425444](SpringAnnotaion.assets/image-20220520163425444.png)
 
 可以看到，在获取bean时，在id前面加上&符号就会获取到ColorFactoryBean实例对象。
 
@@ -2021,7 +2021,7 @@ public class MainConfigOfLifeCycle {
     }
 ```
 
-![image-20220520170304106](Spring注解.assets/image-20220520170304106.png)
+![image-20220520170304106](SpringAnnotaion.assets/image-20220520170304106.png)
 
 可以看到，在Spring容器创建完成时，会自动调用单实例bean的构造方法，对单实例bean进行了实例化操作。
 
@@ -2079,7 +2079,7 @@ public class MainConfigOfLifeCycle {
 
 此时，我们再来运行IOCTest_LifeCycle类中的test01()方法，会发现输出的结果信息如下所示。
 
-![image-20220520170825007](Spring注解.assets/image-20220520170825007.png)
+![image-20220520170825007](SpringAnnotaion.assets/image-20220520170825007.png)
 
 从输出结果中可以看出，在Spring容器中，先是调用了`Car类的构造方法来创建Car对象`，接下来便是调用了`Car对象的init()方法`来进行初始化。
 
@@ -2099,7 +2099,7 @@ public class MainConfigOfLifeCycle {
     }
 ```
 
-![image-20220520170951389](Spring注解.assets/image-20220520170951389.png)
+![image-20220520170951389](SpringAnnotaion.assets/image-20220520170951389.png)
 
 ##### 3. 指定初始化和销毁方法的使用场景
 
@@ -2140,7 +2140,7 @@ public class MainConfigOfLifeCycle {
     }
 ```
 
-![image-20220520171701520](Spring注解.assets/image-20220520171701520.png)
+![image-20220520171701520](SpringAnnotaion.assets/image-20220520171701520.png)
 
 可以看到，当我们将Car对象设置成多实例bean，并且没有获取bean实例对象时，Spring容器并没有执行bean的构造方法、初始化方法和销毁方法。
 
@@ -2159,7 +2159,7 @@ public class MainConfigOfLifeCycle {
     }
 ```
 
-![image-20220520171825102](Spring注解.assets/image-20220520171825102.png)
+![image-20220520171825102](SpringAnnotaion.assets/image-20220520171825102.png)
 
 当我们在获取多实例bean对象的时候，会创建对象并进行初始化，但是销毁方法是在什么时候被调用呢？是在容器关闭的时候吗？我们可以将IOCTest_LifeCycle类中的test01()方法里面的那行关闭容器的代码放开来进行验证，就像下面这样。
 
@@ -2178,7 +2178,7 @@ public class MainConfigOfLifeCycle {
 
 
 
-![image-20220520171903733](Spring注解.assets/image-20220520171903733.png)
+![image-20220520171903733](SpringAnnotaion.assets/image-20220520171903733.png)
 
 `可以看到，多实例的bean在容器关闭的时候是不进行销毁的，也就是说你每次获取时，IOC容器帮你创建出对象交还给你，至于要什么时候销毁这是你自己的事，Spring容器压根就不会再管理这些多实例的bean了。`
 
@@ -2327,7 +2327,7 @@ public class MainConfigOfLifeCycle {
 
 接着，运行IOCTest_LifeCycle类中的test01()方法，输出的结果信息如下所示。
 
-![image-20220520174230839](Spring注解.assets/image-20220520174230839.png)
+![image-20220520174230839](SpringAnnotaion.assets/image-20220520174230839.png)
 
 从输出的结果信息中可以看出，单实例bean情况下，IOC容器创建完成后，会自动调用bean的初始化方法；而在容器销毁前，会自动调用bean的销毁方法。
 
@@ -2434,7 +2434,7 @@ public class Dog {
 
 接着，运行IOCTest_LifeCycle类中的test01()方法，输出的结果信息如下所示。
 
-![image-20220521161903187](Spring注解.assets/image-20220521161903187.png)
+![image-20220521161903187](SpringAnnotaion.assets/image-20220521161903187.png)
 
 从输出的结果信息中可以看出，被@PostConstruct注解修饰的方法是在bean创建完成并且属性赋值完成之后才执行的，而被@PreDestroy注解修饰的方法是在容器销毁bean之前执行的，通常是进行一些清理工作。
 
@@ -2521,7 +2521,7 @@ public class MainConfigOfLifeCycle {
     }
 ```
 
-![image-20220521163353664](Spring注解.assets/image-20220521163353664.png)
+![image-20220521163353664](SpringAnnotaion.assets/image-20220521163353664.png)
 
 可以看到，postProcessBeforeInitialization方法会在bean实例化和属性设置之后，自定义初始化方法之前被调用，而postProcessAfterInitialization方法会在自定义初始化方法之后被调用。
 
@@ -2537,7 +2537,7 @@ public class MainConfigOfLifeCycle {
 
 这一部分的关键代码是在哪儿呢？我们定位到`AbstractAutoProxyCreator`抽象类中的`postProcessAfterInitialization`方法处便能看到了，如下所示。
 
-![image-20220521164110841](Spring注解.assets/image-20220521164110841.png)
+![image-20220521164110841](SpringAnnotaion.assets/image-20220521164110841.png)
 
 #### ==十五、BeanPostProcessor的执行流程==
 
@@ -2687,7 +2687,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor, Ordered {
 
 ###### 第一步 在IOCTest_LifeCycle类的test01()方法中，首先通过new实例对象的方式创建了一个IOC容器。
 
-![image-20220521172227255](Spring注解.assets/image-20220521172227255.png)
+![image-20220521172227255](SpringAnnotaion.assets/image-20220521172227255.png)
 
 ```java
 public class IOCTest_LifeCycle {
@@ -2707,17 +2707,17 @@ public class IOCTest_LifeCycle {
 
 ###### 第二步，通过调用栈继续分析，单击IOCTest_LifeCycle类的test01()方法上面的那个方法，这时会进入AnnotationConfigApplicationContext类的构造方法中。
 
-![image-20220521172326986](Spring注解.assets/image-20220521172326986.png)
+![image-20220521172326986](SpringAnnotaion.assets/image-20220521172326986.png)
 
-![image-20220521172351694](Spring注解.assets/image-20220521172351694.png)
+![image-20220521172351694](SpringAnnotaion.assets/image-20220521172351694.png)
 
 可以看到，在AnnotationConfigApplicationContext类的构造方法中会调用refresh()方法。
 
 ###### 第三步，我们继续跟进方法调用栈，如下所示，可以看到，方法的执行定位到AbstractApplicationContext类的refresh()方法中的如下那行代码处。
 
-![image-20220521172521877](Spring注解.assets/image-20220521172521877.png)
+![image-20220521172521877](SpringAnnotaion.assets/image-20220521172521877.png)
 
-![image-20220521172623916](Spring注解.assets/image-20220521172623916.png)
+![image-20220521172623916](SpringAnnotaion.assets/image-20220521172623916.png)
 
 上面这行代码的作用就是初始化所有的（非懒加载的）单实例bean对象。
 
@@ -2797,9 +2797,9 @@ AbstractApplicationContext类中的refresh()方法有点长，下面是源码，
 
 ###### 第四步，我们继续跟进方法调用栈，如下所示，可以看到，方法的执行定位到AbstractApplicationContext类的finishBeanFactoryInitialization()方法中的如下那行代码处。
 
-![image-20220521172901036](Spring注解.assets/image-20220521172901036.png)
+![image-20220521172901036](SpringAnnotaion.assets/image-20220521172901036.png)
 
-![image-20220521172940036](Spring注解.assets/image-20220521172940036.png)
+![image-20220521172940036](SpringAnnotaion.assets/image-20220521172940036.png)
 
 这行代码的作用同样是初始化所有的（非懒加载的）单实例bean。
 
@@ -2840,9 +2840,9 @@ protected void finishBeanFactoryInitialization(ConfigurableListableBeanFactory b
 
 ###### 第五步，我们继续跟进方法调用栈，如下所示，可以看到，方法的执行定位到DefaultListableBeanFactory类的preInstantiateSingletons()方法的最后一个else分支调用的getBean()方法上。
 
-![image-20220521173226696](Spring注解.assets/image-20220521173226696.png)
+![image-20220521173226696](SpringAnnotaion.assets/image-20220521173226696.png)
 
-![image-20220521173245190](Spring注解.assets/image-20220521173245190.png)
+![image-20220521173245190](SpringAnnotaion.assets/image-20220521173245190.png)
 
 DefaultListableBeanFactory类的preInstantiateSingletons()方法同样是有点长，源码如下所示。
 
@@ -2889,41 +2889,41 @@ DefaultListableBeanFactory类的preInstantiateSingletons()方法同样是有点�
 
 ###### 第六步，继续跟进方法调用栈，如下所示。
 
-![image-20220521173410319](Spring注解.assets/image-20220521173410319.png)
+![image-20220521173410319](SpringAnnotaion.assets/image-20220521173410319.png)
 
-![image-20220521173422677](Spring注解.assets/image-20220521173422677.png)
+![image-20220521173422677](SpringAnnotaion.assets/image-20220521173422677.png)
 
 此时方法定位到AbstractBeanFactory类的getBean()方法中了，在getBean()方法中，又调用了doGetBean()方法。
 
 ###### 第七步，继续跟进方法调用栈，如下所示，此时，方法的执行定位到AbstractBeanFactory类的doGetBean()方法中的如下那行代码处。
 
-![image-20220521173511898](Spring注解.assets/image-20220521173511898.png)
+![image-20220521173511898](SpringAnnotaion.assets/image-20220521173511898.png)
 
-![image-20220521173546681](Spring注解.assets/image-20220521173546681.png)
+![image-20220521173546681](SpringAnnotaion.assets/image-20220521173546681.png)
 
 可以看到，在Spring内部是通过getSingleton()方法来获取单实例bean的。
 
 ###### 第八步，继续跟进方法调用栈，如下所示，此时，方法定位到DefaultSingletonBeanRegistry类的getSingleton()方法中的如下那行代码处。
 
-![image-20220521173653776](Spring注解.assets/image-20220521173653776.png)
+![image-20220521173653776](SpringAnnotaion.assets/image-20220521173653776.png)
 
-![image-20220521173741411](Spring注解.assets/image-20220521173741411.png)
+![image-20220521173741411](SpringAnnotaion.assets/image-20220521173741411.png)
 
 可以看到，在getSingleton()方法里面又调用了getObject()方法来获取单实例bean。
 
 ###### 第九步，继续跟进方法调用栈，如下所示，此时，方法定位到AbstractBeanFactory类的doGetBean()方法中的如下那行代码处。
 
-![image-20220521173945216](Spring注解.assets/image-20220521173945216.png)
+![image-20220521173945216](SpringAnnotaion.assets/image-20220521173945216.png)
 
-![image-20220521174121447](Spring注解.assets/image-20220521174121447.png)
+![image-20220521174121447](SpringAnnotaion.assets/image-20220521174121447.png)
 
 也就是说，当第一次获取单实例bean时，由于单实例bean还未创建，那么Spring会调用createBean()方法来创建单实例bean。
 
 ###### 第十步，继续跟进方法调用栈，如下所示，可以看到，方法的执行定位到AbstractAutowireCapableBeanFactory类的createBean()方法中的如下那行代码处。
 
-![image-20220521174317640](Spring注解.assets/image-20220521174317640.png)
+![image-20220521174317640](SpringAnnotaion.assets/image-20220521174317640.png)
 
-![image-20220521174303977](Spring注解.assets/image-20220521174303977.png)
+![image-20220521174303977](SpringAnnotaion.assets/image-20220521174303977.png)
 
 ```java
 @Override
@@ -2988,23 +2988,23 @@ DefaultListableBeanFactory类的preInstantiateSingletons()方法同样是有点�
 
 ###### 第十一步，继续跟进方法调用栈，如下所示，此时，方法的执行已经定位到AbstractAutowireCapableBeanFactory类的doCreateBean()方法中的如下那行代码处了。
 
-![image-20220521174450313](Spring注解.assets/image-20220521174450313.png)
+![image-20220521174450313](SpringAnnotaion.assets/image-20220521174450313.png)
 
-![image-20220521174502607](Spring注解.assets/image-20220521174502607.png)
+![image-20220521174502607](SpringAnnotaion.assets/image-20220521174502607.png)
 
 在initializeBean()方法里面会调用一系列的后置处理器。
 
 ###### 第十二步，继续跟进方法调用栈，如下所示，此时，方法的执行定位到AbstractAutowireCapableBeanFactory类的initializeBean()方法中的如下那行代码处。
 
-![image-20220521174546762](Spring注解.assets/image-20220521174546762.png)
+![image-20220521174546762](SpringAnnotaion.assets/image-20220521174546762.png)
 
-![image-20220521174611233](Spring注解.assets/image-20220521174611233.png)
+![image-20220521174611233](SpringAnnotaion.assets/image-20220521174611233.png)
 
 小伙伴们需要重点留意一下这个applyBeanPostProcessorsBeforeInitialization()方法。
 
 回过头来我们再来看看AbstractAutowireCapableBeanFactory类的doCreateBean()方法中的如下这行代码。
 
-![image-20220521174907654](Spring注解.assets/image-20220521174907654.png)
+![image-20220521174907654](SpringAnnotaion.assets/image-20220521174907654.png)
 
 没错，在以上initializeBean()方法中调用了后置处理器的逻辑，这我上面已经说到了。小伙伴们需要特别注意一下，在AbstractAutowireCapableBeanFactory类的doCreateBean()方法中，调用initializeBean()方法之前，还调用了一个`populateBean()`方法，我也在上图中标注出来了。
 
@@ -3140,7 +3140,7 @@ if (mbd == null || !mbd.isSynthetic()) {
 
 这里，我们先来看看`applyBeanPostProcessorsBeforeInitialization()`方法中具体执行了哪些逻辑，该方法位于AbstractAutowireCapableBeanFactory类中，源码如下所示。
 
-![image-20220521175644205](Spring注解.assets/image-20220521175644205.png)
+![image-20220521175644205](SpringAnnotaion.assets/image-20220521175644205.png)
 
 可以看到，在`applyBeanPostProcessorsBeforeInitialization()`方法中，会遍历所有`BeanPostProcessor`对象，然后依次执行所有BeanPostProcessor对象的`postProcessBeforeInitialization()`方法，一旦`BeanPostProcessor`对象的`postProcessBeforeInitialization()`方法返回null以后，则后面的BeanPostProcessor对象便不再执行了，而是直接`退出for循环`。这些都是我们看源码看到的。
 
@@ -3374,7 +3374,7 @@ public class Dog implements ApplicationContextAware {
 
 我们先来看下ApplicationContextAwareProcessor类中对于postProcessBeforeInitialization()方法的实现，如下所示。
 
-![`image-20220522205703812](Spring注解.assets/image-20220522205703812.png)
+![`image-20220522205703812](SpringAnnotaion.assets/image-20220522205703812.png)
 
 在bean初始化之前，首先对当前bean的类型进行判断，如果当前bean的类型不是`EnvironmentAware`，不是`EmbeddedValueResolverAware`，不是`ResourceLoaderAware`，不是`ApplicationEventPublisherAware`，不是`MessageSourceAware`，也不是`ApplicationContextAware`，那么直接返回bean。如果是上面类型中的一种类型，那么最终会调用`invokeAwareInterfaces()`方法，并将bean传递给该方法。
 
@@ -3631,13 +3631,13 @@ public class Dog implements ApplicationContextAware {
 
 接下来，我们也通过Debug的方式来跟进下代码的执行流程。首先，在Dog类的initt()方法上打上一个断点，如下所示。
 
-![image-20220522211902231](Spring注解.assets/image-20220522211902231.png)
+![image-20220522211902231](SpringAnnotaion.assets/image-20220522211902231.png)
 
 然后，我们以Debug的方式运行IOCTest_LifeCycle类中的test01()方法.
 
 我们还是带着问题来分析，Spring怎么就能定位到使用`@PostConstruct`注解标注的方法呢？通过分析方法的调用栈，我们发现在进入使用`@PostConstruct`注解标注的方法之前，Spring调用了`InitDestroyAnnotationBeanPostProcessor`类的`postProcessBeforeInitialization()`方法，如下所示。
 
-![image-20220522212101988](Spring注解.assets/image-20220522212101988.png)
+![image-20220522212101988](SpringAnnotaion.assets/image-20220522212101988.png)
 
 ```java
 @Override
